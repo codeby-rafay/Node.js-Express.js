@@ -1,7 +1,8 @@
 const express = require("express");
-const { authMiddleware } = require("../Middleware/auth.middleware");
+const { authMiddleware } = require("../middleware/auth.middleware");
 const {
   createAccountController,
+  getUserAccountsController,
 } = require("../controllers/account.controller");
 
 const router = express.Router();
@@ -12,5 +13,12 @@ const router = express.Router();
  * - Protected route.
  */
 router.post("/", authMiddleware, createAccountController);
+
+/**
+ * - GET /api/accounts
+ * - Retrieve all accounts.
+ * - Protected route.
+ */
+router.get("/", authMiddleware, getUserAccountsController);
 
 module.exports = router;
