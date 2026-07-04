@@ -3,6 +3,7 @@ const { authMiddleware } = require("../middleware/auth.middleware");
 const {
   createAccountController,
   getUserAccountsController,
+  getAccountBalanceController,
 } = require("../controllers/account.controller");
 
 const router = express.Router();
@@ -20,5 +21,13 @@ router.post("/", authMiddleware, createAccountController);
  * - Protected route.
  */
 router.get("/", authMiddleware, getUserAccountsController);
+
+/**
+ * - GET /api/accounts/balance/:accountId
+ * - Retrieve the balance of a specific account.
+ * - Protected route.
+ */
+
+router.get("/balance/:accountId", authMiddleware, getAccountBalanceController);
 
 module.exports = router;
